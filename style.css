@@ -59,23 +59,23 @@ h3 :hover {
 }
 
 footer {
-    margin-top: 10rem; /* Espaçamento acima do footer */
-    text-align: center; /* Centraliza o texto do footer */
-    color: #969696; /* Cor do texto do footer */
-    background-color: #f0f0f0; /* Cor de fundo do footer (substitua pelo desejado) */
-    padding: 10px 0; /* Adiciona espaço interno ao footer */
+    margin-top: 10rem;
+    text-align: center;
+    color: #969696;
+    background-color: #f0f0f0;
+    padding: 10px 0;
 }
 
 footer p {
-    margin: 0; /* Remove margens padrão */
-    font-size: 14px; /* Ajusta o tamanho da fonte */
+    margin: 0;
+    font-size: 14px;
 }
 
 footer a {
-    color: #1a73e8; /* Cor do link */
-    text-decoration: none; /* Remove o sublinhado do link */
+    color: #000000;
+    text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline; /* Sublinha o link ao passar o mouse */
+    text-decoration: underline;
 }
