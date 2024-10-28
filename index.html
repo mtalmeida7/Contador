@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Caracteres</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Contador de Caracteres</h1>
+    <h3>Digite ou cole seu texto <span id="pasteText" style="color: #1a73e8; cursor: pointer;">aqui</span>...</h3>
+    <textarea id="inputText" placeholder="" oninput="contarCaracteres()"></textarea>
+    <div class="result">
+        <p>Caracteres (sem espaço): <span id="charSemEspaco">0</span></p>
+        <p>Caracteres (com espaço): <span id="charComEspaco">0</span></p>
+        <p>Letras: <span id="letras">0</span></p>
+        <p>Linhas: <span id="linhas">0</span></p>
+        <p>Vogais: <span id="vogais" class="result-item" data-type="vogais">0</span></p>
+        <p>Dígrafos: <span id="digrafos" class="result-item" data-type="digrafos">0</span></p>
+    </div>
+
+    <footer>
+        <p><strong>Contador de Caracteres</strong> - <a href="https://github.com/seu-usuario" target="_blank">Matheus</a> - DevDreamTeam © 2024</p>
+    </footer>
+
+    <script>
+        let vogaisList = [];
+        let digrafosList = [];
+
+        function contarCaracteres() {
+            const text = document.getElementById("inputText").value;
+            const charComEspaco = text.length;
+            const charSemEspaco = text.replace(/\s+/g, '').length;
+
+            vogaisList = text.match(/[aeiouáéíóúãõâêîôûàèìòùäëïöü]/gi) || [];
+            const vogais = vogaisList.length;
+
+            digrafosList = text.match(/ch|lh|nh|rr|ss/gi) || [];
+            const digrafos = digrafosList.length;
+
+            const letras = text.match(/[a-zA-Záéíóúãõâêîôûàèìòùäëïöü]/gi) ? text.match(/[a-zA-Záéíóúãõâêîôûàèìòùäëïöü]/gi).length : 0;
+            const linhas = text.split(/\r\n|\r|\n/).length;
+
+            document.getElementById("charComEspaco").textContent = charComEspaco;
+            document.getElementById("charSemEspaco").textContent = charSemEspaco;
+            document.getElementById("letras").textContent = letras;
+            document.getElementById("linhas").textContent = linhas;
+            document.getElementById("vogais").textContent = vogais;
+            document.getElementById("digrafos").textContent = digrafos;
+        }
+
+        document.getElementById("pasteText").addEventListener("click", function() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById("inputText").value = text;
+                contarCaracteres(); // Atualiza a contagem após colar
+            }).catch(err => {
+                console.error('Erro ao acessar o clipboard: ', err);
+            });
+        });
+
+        // Adiciona eventos de clique apenas para vogais e dígrafos
+        document.getElementById("vogais").addEventListener('click', function() {
+            alert(`Vogais: ${vogaisList.join(', ')}`);
+        });
+
+        document.getElementById("digrafos").addEventListener('click', function() {
+            alert(`Dígrafos: ${digrafosList.join(', ')}`);
+        });
+    </script>
+</body>
+</html>
